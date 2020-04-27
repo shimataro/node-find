@@ -30,6 +30,10 @@ npm i @shimataro/node-find
 }
 ```
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
+
 [image-build-windows]: https://github.com/shimataro/node-find/workflows/Windows/badge.svg
 [link-build-windows]: https://github.com/shimataro/node-find/actions?query=workflow%3AWindows
 [image-build-macos]: https://github.com/shimataro/node-find/workflows/macOS/badge.svg
