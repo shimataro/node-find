@@ -43,4 +43,30 @@ function testParseArguments(): void
 			}).toThrow();
 		});
 	});
+	describe("wexec", () =>
+	{
+		it("specified", () =>
+		{
+			expect(parser.parseArguments(["-exec", "ls", "{}", ";"])).toEqual({
+				startingPoint: ".",
+				name: "{*,.*}",
+				exec: [`"ls" "{}"`],
+			});
+		});
+		it("specified 2", () =>
+		{
+			expect(parser.parseArguments(["-exec", "ls", "{}", ";", "-exec", "cat", "{}", ";"])).toEqual({
+				startingPoint: ".",
+				name: "{*,.*}",
+				exec: [`"ls" "{}"`, `"cat" "{}"`],
+			});
+		});
+		it("omitted semicolon", () =>
+		{
+			expect(() =>
+			{
+				parser.parseArguments(["-exec", "ls", "{}"]);
+			}).toThrow();
+		});
+	});
 }
