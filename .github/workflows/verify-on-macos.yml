@@ -1,7 +1,7 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
 on: push
-name: Linux
+name: macOS
 jobs:
   verify:
     name: Verify
@@ -9,8 +9,9 @@ jobs:
     strategy:
       matrix:
         os:
-        - ubuntu-latest
+        - macos-latest
         nodejs:
+        - 10
         - 12
       fail-fast: false
     steps:
@@ -28,3 +29,7 @@ jobs:
       run: npm ci
     - name: Verify
       run: npm run verify
+    - name: Build
+      run: npm run build
+    - name: Check syntax
+      run: node dist/index.js
