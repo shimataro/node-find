@@ -1,15 +1,15 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
 on: push
-name: Linux
+name: macOS
 jobs:
   verify:
-    name: Verify
+    name: Verify on macOS
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os:
-        - ubuntu-latest
+        - macos-latest
         nodejs:
         - 12
       fail-fast: false
