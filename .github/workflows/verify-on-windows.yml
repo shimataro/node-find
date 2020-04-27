@@ -4,7 +4,7 @@ on: push
 name: Windows
 jobs:
   verify:
-    name: Verify on Windows
+    name: Verify
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
