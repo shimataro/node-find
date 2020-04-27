@@ -34,7 +34,7 @@ npm i @shimataro/node-find
 [link-code-coverage]: https://codecov.io/gh/shimataro/node-find
 [image-release]: https://img.shields.io/github/release/shimataro/node-find.svg
 [link-release]: https://github.com/shimataro/node-find/releases
-[image-engine]: https://img.shields.io/node/v/node-find.svg
+[image-engine]: https://img.shields.io/node/v/@shimataro/node-find.svg
 [link-engine]: https://nodejs.org/
 [image-license]: https://img.shields.io/github/license/shimataro/node-find.svg
 [link-license]: ./LICENSE
