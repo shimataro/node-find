@@ -1,5 +1,7 @@
 # node-find
 
+[![Build Status (Windows)][image-build-windows]][link-build-windows]
+[![Build Status (macOS)][image-build-macos]][link-build-macos]
 [![Build Status (Linux)][image-build-linux]][link-build-linux]
 [![Code Coverage][image-code-coverage]][link-code-coverage]
 [![Release][image-release]][link-release]
@@ -28,6 +30,10 @@ npm i @shimataro/node-find
 }
 ```
 
+[image-build-windows]: https://github.com/shimataro/node-find/workflows/Windows/badge.svg
+[link-build-windows]: https://github.com/shimataro/node-find/actions?query=workflow%3AWindows
+[image-build-macos]: https://github.com/shimataro/node-find/workflows/macOS/badge.svg
+[link-build-macos]: https://github.com/shimataro/node-find/actions?query=workflow%3AmacOS
 [image-build-linux]: https://github.com/shimataro/node-find/workflows/Linux/badge.svg
 [link-build-linux]: https://github.com/shimataro/node-find/actions?query=workflow%3ALinux
 [image-code-coverage]: https://img.shields.io/codecov/c/github/shimataro/node-find/master.svg
