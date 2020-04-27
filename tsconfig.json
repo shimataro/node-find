@@ -4,6 +4,7 @@
     "module": "CommonJS",
     "lib": [
       "es6",
+      "es2015.iterable",
       "esnext.asynciterable"
     ],
     "rootDir": ".",
