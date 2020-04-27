@@ -11,7 +11,6 @@ jobs:
         os:
         - windows-latest
         nodejs:
-        - 8
         - 10
         - 12
       fail-fast: false

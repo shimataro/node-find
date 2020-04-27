@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2018",
     "module": "CommonJS",
     "lib": [
-      "es6",
-      "es2015.iterable",
-      "esnext.asynciterable"
+      "ES2018"
     ],
     "rootDir": ".",
     "baseUrl": ".",
