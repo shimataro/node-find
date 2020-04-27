@@ -32,3 +32,7 @@ jobs:
       run: npm ci
     - name: Verify
       run: npm run verify
+    - name: Build
+      run: npm run build
+    - name: Check syntax
+      run: node dist/index.js
