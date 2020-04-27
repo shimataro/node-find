@@ -30,7 +30,7 @@ npm i @shimataro/node-find
 
 [image-build-linux]: https://github.com/shimataro/node-find/workflows/Linux/badge.svg
 [link-build-linux]: https://github.com/shimataro/node-find/actions?query=workflow%3ALinux
-[image-code-coverage]: https://img.shields.io/codecov/c/github/shimataro/node-find/master.svg
+[image-code-coverage]: https://img.shields.io/codecov/c/github/shimataro/node-find/develop.svg
 [link-code-coverage]: https://codecov.io/gh/shimataro/node-find
 [image-release]: https://img.shields.io/github/release/shimataro/node-find.svg
 [link-release]: https://github.com/shimataro/node-find/releases
