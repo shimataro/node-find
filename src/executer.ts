@@ -6,11 +6,12 @@ import * as path from "path";
  * @param exec command to execute ("{}" will be replaced with entry)
  * @param entry entry to replace
  */
-export function execCommand(exec: string, entry: string): void
+export function execCommand(exec: string[], entry: string): void
 {
 	const command = buildExecCommand(exec, entry);
-	const stdout = childProcess.execSync(command);
-	process.stdout.write(stdout);
+	childProcess.spawnSync(command[0], command.slice(1), {
+		stdio: "inherit",
+	});
 }
 
 /**
@@ -19,11 +20,14 @@ export function execCommand(exec: string, entry: string): void
  * @param entry found entry
  * @returns command to exec
  */
-function buildExecCommand(exec: string, entry: string): string
+function buildExecCommand(exec: string[], entry: string): string[]
 {
-	return exec.replace(/{([^}]*)}/g, (match, p1) =>
+	return exec.map((part) =>
 	{
-		return replacePlaceholders(p1, entry);
+		return part.replace(/{([^}]*)}/g, (match, p1) =>
+		{
+			return replacePlaceholders(p1, entry);
+		});
 	});
 }
 
