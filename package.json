@@ -51,6 +51,7 @@
     "yaml-lint": "1.2.4"
   },
   "dependencies": {
+    "core-js": "3.6.5",
     "fast-glob": "3.2.2"
   }
 }
