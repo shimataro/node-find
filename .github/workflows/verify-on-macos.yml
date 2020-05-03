@@ -11,6 +11,7 @@ jobs:
         os:
         - macos-latest
         nodejs:
+        - 8
         - 10
         - 12
       fail-fast: false
