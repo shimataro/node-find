@@ -43,14 +43,14 @@ function testParseArguments(): void
 			}).toThrow();
 		});
 	});
-	describe("wexec", () =>
+	describe("exec", () =>
 	{
 		it("specified", () =>
 		{
 			expect(parser.parseArguments(["-exec", "ls", "{}", ";"])).toEqual({
 				startingPoint: ".",
 				name: "{*,.*}",
-				exec: [`"ls" "{}"`],
+				exec: [["ls", "{}"]],
 			});
 		});
 		it("specified 2", () =>
@@ -58,7 +58,10 @@ function testParseArguments(): void
 			expect(parser.parseArguments(["-exec", "ls", "{}", ";", "-exec", "cat", "{}", ";"])).toEqual({
 				startingPoint: ".",
 				name: "{*,.*}",
-				exec: [`"ls" "{}"`, `"cat" "{}"`],
+				exec: [
+					["ls", "{}"],
+					["cat", "{}"],
+				],
 			});
 		});
 		it("omitted semicolon", () =>

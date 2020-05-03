@@ -2,8 +2,10 @@ export interface Options
 {
     startingPoint: string;
     name: string;
-    exec: string[];
+    exec: Command[];
 }
+
+type Command = string[];
 
 /**
  * parse command-line arguments
@@ -75,23 +77,24 @@ function getName(argv: string[]): string
  * @param argv command-line arguments
  * @returns exec commands
  */
-function getExec(argv: string[]): string[]
+function getExec(argv: string[]): Command[]
 {
-	const exec: string[] = [];
+	const exec: Command[] = [];
 	let found = false;
-	const command: string[] = [];
+	let command: Command = [];
 	for(const arg of argv)
 	{
 		if(found)
 		{
 			if(arg === ";")
 			{
-				// join and clear command
-				exec.push(command.splice(0).join(" "));
+				// push command
+				exec.push(command);
+				command = [];
 				found = false;
 				continue;
 			}
-			command.push(`"${arg}"`);
+			command.push(arg);
 			continue;
 		}
 		if(arg === "-exec")
