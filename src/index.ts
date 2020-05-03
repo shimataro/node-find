@@ -1,3 +1,5 @@
+import "./libs/polyfills";
+
 import {parseArguments} from "./parser";
 import {findEntries} from "./finder";
 import {execCommand} from "./executer";
