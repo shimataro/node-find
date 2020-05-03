@@ -1,4 +1,4 @@
-import "core-js/modules/es7.symbol.async-iterator";
+import "core-js/modules/es.symbol.async-iterator";
 
 import {parseArguments} from "./parser";
 import {findEntries} from "./finder";
