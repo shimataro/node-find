@@ -107,6 +107,11 @@ function replacePlaceholder(placeholder: string, entry: string): string
 		// basename without extension
 		return path.basename(entry, path.extname(entry));
 	}
+	if(placeholder === "r")
+	{
+		// relative path from base
+		return entry;
+	}
 	if(placeholder.startsWith("r="))
 	{
 		// relative path
