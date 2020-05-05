@@ -5,13 +5,14 @@ import * as path from "path";
  * execute a command
  * @param exec command to execute ("{}" will be replaced with entry)
  * @param entry entry to replace
+ * @param startPoint starting point
  * @returns status code
  */
-export function execCommand(exec: string[], entry: string): Promise<number>
+export function execCommand(exec: string[], entry: string, startPoint: string): Promise<number>
 {
 	return new Promise((resolve, reject) =>
 	{
-		const [command, ...args] = buildExecCommand(exec, entry);
+		const [command, ...args] = buildExecCommand(exec, entry, startPoint);
 		const options: childProcess.SpawnOptions = {
 			stdio: "inherit",
 		};
@@ -39,15 +40,16 @@ export function execCommand(exec: string[], entry: string): Promise<number>
  * build command; replace "{}" with entry
  * @param exec command to execute
  * @param entry found entry
+ * @param startPoint starting point
  * @returns command to exec
  */
-function buildExecCommand(exec: string[], entry: string): string[]
+function buildExecCommand(exec: string[], entry: string, startPoint: string): string[]
 {
 	return exec.map((part) =>
 	{
 		return part.replace(/{([^}]*)}/g, (match, p1) =>
 		{
-			return replacePlaceholders(p1, entry);
+			return replacePlaceholders(p1, entry, startPoint);
 		});
 	});
 }
@@ -56,14 +58,15 @@ function buildExecCommand(exec: string[], entry: string): string[]
  * replace placeholders with entry
  * @param placeholders placeholders, separated by ":"
  * @param entry found entry
+ * @param startPoint starting point
  * @returns replaced value
  */
-function replacePlaceholders(placeholders: string, entry: string): string
+function replacePlaceholders(placeholders: string, entry: string, startPoint: string): string
 {
 	let result = entry;
 	for(const replacer of placeholders.split(":"))
 	{
-		result = replacePlaceholder(replacer, result);
+		result = replacePlaceholder(replacer, result, startPoint);
 	}
 	return result;
 }
@@ -72,9 +75,10 @@ function replacePlaceholders(placeholders: string, entry: string): string
  * replace placeholder with entry
  * @param placeholder placeholder
  * @param entry found entry
+ * @param startPoint starting point
  * @returns replaced value
  */
-function replacePlaceholder(placeholder: string, entry: string): string
+function replacePlaceholder(placeholder: string, entry: string, startPoint: string): string
 {
 	if(placeholder === "" || placeholder === "a")
 	{
@@ -106,6 +110,11 @@ function replacePlaceholder(placeholder: string, entry: string): string
 	{
 		// basename without extension
 		return path.basename(entry, path.extname(entry));
+	}
+	if(placeholder === "R")
+	{
+		// relative path from starting point
+		return path.relative(startPoint, entry);
 	}
 	if(placeholder.startsWith("r="))
 	{

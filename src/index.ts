@@ -14,7 +14,7 @@ async function main(argv: string[]): Promise<void>
 	{
 		for(const exec of options.exec)
 		{
-			await execCommand(exec, entry.toString());
+			await execCommand(exec, entry.toString(), options.startingPoint);
 		}
 	}
 }
