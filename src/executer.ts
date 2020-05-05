@@ -5,12 +5,33 @@ import * as path from "path";
  * execute a command
  * @param exec command to execute ("{}" will be replaced with entry)
  * @param entry entry to replace
+ * @returns status code
  */
-export function execCommand(exec: string[], entry: string): void
+export function execCommand(exec: string[], entry: string): Promise<number>
 {
-	const command = buildExecCommand(exec, entry);
-	childProcess.spawnSync(command[0], command.slice(1), {
-		stdio: "inherit",
+	return new Promise((resolve, reject) =>
+	{
+		const [command, ...args] = buildExecCommand(exec, entry);
+		const options: childProcess.SpawnOptions = {
+			stdio: "inherit",
+		};
+
+		childProcess.spawn(command, args, options)
+			.on("exit", (code) =>
+			{
+				if(code === null)
+				{
+					resolve(0);
+				}
+				else
+				{
+					resolve(code);
+				}
+			})
+			.on("error", (err) =>
+			{
+				reject(err);
+			});
 	});
 }
 
