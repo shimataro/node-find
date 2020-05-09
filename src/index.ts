@@ -15,7 +15,7 @@ async function main(argv: string[]): Promise<void>
 	{
 		for(const exec of options.exec)
 		{
-			tasks.push(execCommand(exec, entry.toString()));
+			tasks.push(execCommand(exec, entry.toString(), options.startingPoint));
 			if(tasks.length >= options.concurrency)
 			{
 				await Promise.all(tasks);
