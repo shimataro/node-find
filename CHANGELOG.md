@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* `-concurrency`: concurrency number
 * `{r}`: relative path from working directory
 * `{R}`: relative path from starting point
 
