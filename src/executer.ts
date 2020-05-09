@@ -109,7 +109,7 @@ function replacePlaceholder(placeholder: string, entry: string): string
 	}
 	if(placeholder === "r")
 	{
-		// relative path from base
+		// relative path from working directory
 		return entry;
 	}
 	if(placeholder.startsWith("r="))
