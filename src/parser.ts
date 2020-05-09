@@ -1,8 +1,11 @@
+import * as os from "os";
+
 export interface Options
 {
-    startingPoint: string;
-    name: string;
-    exec: Command[];
+	startingPoint: string;
+	concurrency: number;
+	name: string;
+	exec: Command[];
 }
 
 type Command = string[];
@@ -16,6 +19,7 @@ export function parseArguments(argv: string[]): Options
 {
 	return {
 		startingPoint: getStartingPoint(argv),
+		concurrency: getConcurrencyNumber(argv),
 		name: getName(argv),
 		exec: getExec(argv),
 	};
@@ -70,6 +74,49 @@ function getName(argv: string[]): string
 	}
 
 	throw Error("missing argument to `-name'");
+}
+
+/**
+ * get concurrency number
+ * @param argv command-line arguments
+ * @returns concurrent number
+ */
+function getConcurrencyNumber(argv: string[]): number
+{
+	let found = false;
+	for(const arg of argv)
+	{
+		if(found)
+		{
+			const concurrency = Number(arg);
+			if(Number.isNaN(concurrency))
+			{
+				break;
+			}
+			if(concurrency < 0)
+			{
+				break;
+			}
+
+			if(concurrency === 0)
+			{
+				// use cpus number
+				return os.cpus().length;
+			}
+			return concurrency;
+		}
+		if(arg === "-concurrency")
+		{
+			found = true;
+			continue;
+		}
+	}
+
+	if(!found)
+	{
+		return 1;
+	}
+	throw Error("missing argument to `-concurrency'");
 }
 
 /**

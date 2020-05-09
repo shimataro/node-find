@@ -12,6 +12,7 @@ function testParseArguments(): void
 	it("empty arguments", () =>
 	{
 		expect(parser.parseArguments([])).toEqual({
+			concurrency: 1,
 			startingPoint: ".",
 			name: "{*,.*}",
 			exec: [],
@@ -20,6 +21,7 @@ function testParseArguments(): void
 	it("starting point", () =>
 	{
 		expect(parser.parseArguments(["abc"])).toEqual({
+			concurrency: 1,
 			startingPoint: "abc",
 			name: "{*,.*}",
 			exec: [],
@@ -30,6 +32,7 @@ function testParseArguments(): void
 		it("specified", () =>
 		{
 			expect(parser.parseArguments(["-name", "*.*"])).toEqual({
+				concurrency: 1,
 				startingPoint: ".",
 				name: "*.*",
 				exec: [],
@@ -48,6 +51,7 @@ function testParseArguments(): void
 		it("specified", () =>
 		{
 			expect(parser.parseArguments(["-exec", "ls", "{}", ";"])).toEqual({
+				concurrency: 1,
 				startingPoint: ".",
 				name: "{*,.*}",
 				exec: [["ls", "{}"]],
@@ -56,6 +60,7 @@ function testParseArguments(): void
 		it("specified 2", () =>
 		{
 			expect(parser.parseArguments(["-exec", "ls", "{}", ";", "-exec", "cat", "{}", ";"])).toEqual({
+				concurrency: 1,
 				startingPoint: ".",
 				name: "{*,.*}",
 				exec: [

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* `-concurrency`: concurrency number
+* `{r}`: relative path from working directory
+* `{R}`: relative path from starting point
+
 ## [0.0.1] - 2020-04-28
 
 * First release.
