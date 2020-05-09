@@ -1,4 +1,4 @@
-import * as parser from "../src/parser";
+import * as parser from "@root/parser";
 
 {
 	describe("parseArguments", testParseArguments);
