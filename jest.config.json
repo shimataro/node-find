@@ -10,6 +10,9 @@
     "node_modules",
     "src"
   ],
+  "moduleNameMapper": {
+    "^@root/(.*)": "<rootDir>/src/$1"
+  },
   "testEnvironment": "node",
   "testMatch": [
     "<rootDir>/test/**/*.test.ts"

@@ -23,7 +23,13 @@
     "noFallthroughCasesInSwitch": true,
 
     "moduleResolution": "Node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+
+    "paths": {
+      "@root/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",
