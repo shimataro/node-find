@@ -111,6 +111,11 @@ function replacePlaceholder(placeholder: string, entry: string, startPoint: stri
 		// basename without extension
 		return path.basename(entry, path.extname(entry));
 	}
+	if(placeholder === "r")
+	{
+		// relative path from working directory
+		return entry;
+	}
 	if(placeholder === "R")
 	{
 		// relative path from starting point
