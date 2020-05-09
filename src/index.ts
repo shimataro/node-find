@@ -1,6 +1,7 @@
 import {parseArguments} from "./parser";
 import {findEntries} from "./finder";
 import {execCommand} from "./executer";
+import {Runner} from "./libs/concurrency";
 
 /**
  * main function
@@ -10,24 +11,17 @@ async function main(argv: string[]): Promise<void>
 {
 	const options = parseArguments(argv);
 	const stream = findEntries(options);
-	let tasks: Promise<number>[] = [];
+	const runner = Runner.factory(options.concurrency);
 	for await(const entry of stream)
 	{
 		for(const exec of options.exec)
 		{
-			tasks.push(execCommand(exec, entry.toString(), options.startingPoint));
-			if(tasks.length >= options.concurrency)
-			{
-				await Promise.all(tasks);
-				tasks = [];
-			}
+			const task = execCommand(exec, entry.toString(), options.startingPoint);
+			await runner.add(task);
 		}
 	}
 
-	if(tasks.length > 0)
-	{
-		await Promise.all(tasks);
-	}
+	await runner.flush();
 }
 
 main(process.argv.slice(2))
