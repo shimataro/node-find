@@ -1,3 +1,5 @@
+import "core-js/modules/es.symbol.async-iterator";
+
 import {parseArguments} from "./parser";
 import {findEntries} from "./finder";
 import {execCommand} from "./executer";
